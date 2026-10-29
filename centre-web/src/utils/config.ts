@@ -60,6 +60,9 @@ export const OidcConfig = {
   redirect_uri: `${APP_URL}/oidc-callback`,
   post_logout_redirect_uri: `${APP_URL}/`,
   scope: "openid profile email",
+  // Don't renew by hand: signinSilent sets isLoading, which remounted the page
+  // on every renewal (MAP-87).
+  automaticSilentRenew: true,
   revokeTokensOnSignout: true,
   extraQueryParams: { kc_idp_hint: "idir" },
 };
